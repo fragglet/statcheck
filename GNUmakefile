@@ -8,7 +8,8 @@ OUTPUTS = $(subst expected/,output/,$(shell find expected/ -name '*.txt'))
 UNZIPOPTS = -L -o
 
 check: expected output
-	@diff -x .gitignore -u -r expected output && echo all tests passed
+	diff --strip-trailing-cr -x .gitignore -u -r expected output
+	@echo all tests passed
 
 output: $(OUTPUTS)
 
