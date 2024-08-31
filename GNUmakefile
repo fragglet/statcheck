@@ -1,4 +1,5 @@
 
+export SOURCE_PORT = $(shell which chocolate-doom)
 export SDL_VIDEODRIVER = dummy
 export DOOMOPTS = -mb 16 -nodraw -noblit -nosound \
                   -noautoload -nogui -nograbmouse

@@ -20,11 +20,13 @@ def read_config(path):
 
     return result
 
+source_port = os.getenv("SOURCE_PORT")
+assert source_port != "", "SOURCE_PORT environment variable not set."
 lmp_file, out_file = sys.argv[1:]
 cfg = read_config(lmp_file)
 
 args = [
-    "chocolate-doom", "-iwad", cfg["iwad"],
+    source_port, "-iwad", cfg["iwad"],
     "-statdump", out_file,
     "-timedemo", lmp_file,
 ] + shlex.split(os.getenv("DOOMOPTS", ""))
