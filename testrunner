@@ -1,24 +1,11 @@
 #!/usr/bin/env python3
 
 import os
-from os.path import dirname, basename, join, exists
+from os.path import join
 import shlex
 import sys
-import yaml
 
-def read_config(path):
-    if path == '':
-        return {}
-
-    # Config deeper in the hierarchy can override config files from
-    # higher up in the hierarchy:
-    result = read_config(dirname(path))
-    config_file = join(path, ".democonfig")
-    if exists(config_file):
-        with open(config_file) as f:
-            result.update(yaml.safe_load(f))
-
-    return result
+from common import *
 
 source_port = os.getenv("SOURCE_PORT")
 assert source_port != "", "SOURCE_PORT environment variable not set."
