@@ -18,6 +18,9 @@ args = [
     "-timedemo", lmp_file,
 ] + shlex.split(os.getenv("DOOMOPTS", ""))
 
+if "gameversion" in cfg:
+    args.extend(("-gameversion", cfg["gameversion"]))
+
 if "pwad" in cfg:
     args.extend(("-file", join("extract", cfg["pwad"])))
 
