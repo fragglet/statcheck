@@ -21,6 +21,7 @@ output/%.txt: demos/%.lmp $(SOURCE_PORT)
 
 extract/%:
 	unzip $(UNZIPOPTS) -d extract $< $(notdir $@)
+	@touch $@
 
 extract/requiem.wad: pwads/requiem.zip
 extract/mm2.wad: pwads/mm2.zip
