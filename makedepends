@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+from glob import glob
+import os
+import sys
+
+from common import *
+
+depends_file = sys.argv[1]
+dependencies = {}
+
+for filename in glob("expected/**/*.txt", recursive=True):
+    lmp_file = filename.replace("expected/", "demos/").replace(".txt", ".lmp")
+    cfg = read_config(lmp_file)
+
+    pwad = cfg.get("pwad")
+    if pwad is not None:
+        out_file = filename.replace("expected/", "output/")
+        dependencies[out_file] = [os.path.join("extract", pwad)]
+
+with open(depends_file, "w") as f:
+    for out_file, depends in sorted(dependencies.items()):
+        f.write("%s: %s\n" % (
+            out_file, " ".join(depends),
+        ))

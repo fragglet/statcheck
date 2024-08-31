@@ -12,9 +12,12 @@ check: expected output
 
 output: $(OUTPUTS)
 
-output/%.txt: demos/%.lmp
+output/%.txt: demos/%.lmp $(SOURCE_PORT)
 	@mkdir -p $(dir $@)
 	./testrunner $< $@
+
+.depends: makedepends
+	./makedepends $@
 
 extract/%:
 	unzip $(UNZIPOPTS) -d extract $< $(notdir $@)
@@ -29,3 +32,6 @@ extract/class_ep.wad: pwads/class_ep.zip
 clean:
 	rm -f extract/*.wad
 	rm -rf output/*
+	rm -f .depends
+
+include .depends
