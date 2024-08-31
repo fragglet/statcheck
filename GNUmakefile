@@ -1,4 +1,8 @@
 
+export SDL_VIDEODRIVER = dummy
+export DOOMOPTS = -mb 16 -nodraw -noblit -nosound \
+                  -noautoload -nogui -nograbmouse
+
 OUTPUTS = $(subst expected/,output/,$(shell find expected/ -name '*.txt'))
 UNZIPOPTS = -L -o
 

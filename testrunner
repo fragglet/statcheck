@@ -23,16 +23,11 @@ def read_config(path):
 lmp_file, out_file = sys.argv[1:]
 cfg = read_config(lmp_file)
 
-os.environ["SDL_VIDEODRIVER"] = "dummy"
-
 args = [
     "chocolate-doom", "-iwad", cfg["iwad"],
     "-statdump", out_file,
     "-timedemo", lmp_file,
-] + shlex.split("""
-     -mb 16 -nodraw -noblit -nosound
-     -noautoload -nogui -nograbmouse
-""")
+] + shlex.split(os.getenv("DOOMOPTS", ""))
 
 if "pwad" in cfg:
     args.extend(("-file", join("extract", cfg["pwad"])))
