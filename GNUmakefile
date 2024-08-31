@@ -7,9 +7,9 @@ check: expected output
 
 output: $(OUTPUTS)
 
-output/%:
+output/%.txt: demos/%.lmp
 	@mkdir -p $(dir $@)
-	touch $@ # TODO
+	./testrunner $< $@
 
 extract/%:
 	unzip $(UNZIPOPTS) -d extract $< $(notdir $@)
