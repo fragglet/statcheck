@@ -16,7 +16,7 @@ output: $(OUTPUTS)
 
 output/%.txt: demos/%.lmp $(SOURCE_PORT)
 	@mkdir -p $(dir $@)
-	./testrunner $< $@
+	@./testrunner $< $@
 
 .depends: makedepends
 	./makedepends $@

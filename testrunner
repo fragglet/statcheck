@@ -24,6 +24,6 @@ if "gameversion" in cfg:
 if "pwad" in cfg:
     args.extend(("-file", join("extract", cfg["pwad"])))
 
-print(shlex.join(args))
-sys.stdout.close()
-os.spawnvp(os.P_WAIT, args[0], args)
+command = shlex.join(args) + " >/dev/null 2>&1"
+print(command)
+os.system(command)
