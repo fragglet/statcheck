@@ -13,7 +13,8 @@ lmp_file, out_file = sys.argv[1:]
 cfg = read_config(lmp_file)
 
 args = [
-    source_port, "-iwad", cfg["iwad"],
+    source_port,
+    "-iwad", join("iwads", cfg["iwad"]),
     "-statdump", out_file,
     "-timedemo", lmp_file,
 ] + shlex.split(os.getenv("DOOMOPTS", ""))

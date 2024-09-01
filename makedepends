@@ -2,6 +2,7 @@
 
 from glob import glob
 import os
+from os.path import exists, join
 import sys
 
 from common import *
@@ -12,6 +13,10 @@ dependencies = {}
 for filename in glob("expected/**/*.txt", recursive=True):
     lmp_file = filename.replace("expected/", "demos/").replace(".txt", ".lmp")
     cfg = read_config(lmp_file)
+
+    iwad = cfg.get("iwad")
+    assert exists(join("iwads", iwad)), (
+        "IWAD file %r not found in iwads/ directory." % iwad)
 
     pwad = cfg.get("pwad")
     if pwad is not None:
