@@ -4,7 +4,8 @@ export SDL_VIDEODRIVER = dummy
 export DOOMOPTS = -mb 16 -nodraw -noblit -nosound \
                   -noautoload -nogui -nograbmouse
 
-OUTPUTS = $(subst expected/,output/,$(shell find expected/ -name '*.txt'))
+ALL_DEMOS = $(patsubst %,demos/%,$(shell cat demos.txt))
+OUTPUTS = $(subst .lmp,.txt,$(subst demos/,output/,$(ALL_DEMOS)))
 UNZIPOPTS = -L -o
 
 check: expected output
