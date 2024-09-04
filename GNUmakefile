@@ -19,7 +19,7 @@ OUTPUTS = $(subst .lmp,.txt,$(subst demos/,output/,$(ALL_DEMOS)))
 UNZIPOPTS = -L -o
 
 check: expected output
-	diff --strip-trailing-cr -x .gitignore -u -r expected output
+	diff -x .gitignore -u -r expected output
 	@echo all tests passed
 
 output: $(OUTPUTS)
