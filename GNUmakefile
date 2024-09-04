@@ -28,8 +28,8 @@ output/%.txt: demos/%.lmp $(SOURCE_PORT)
 	@mkdir -p $(dir $@)
 	@./testrunner $< $@
 
-.depends: makedepends
-	./makedepends $@
+.rules: makerules
+	./makerules $@
 
 extract/%:
 	unzip $(UNZIPOPTS) -d extract $< $(notdir $@)
@@ -45,6 +45,6 @@ extract/class_ep.wad: pwads/class_ep.zip
 clean:
 	rm -f extract/*.wad
 	rm -rf output/*
-	rm -f .depends
+	rm -f .rules
 
-include .depends
+include .rules
