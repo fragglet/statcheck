@@ -32,11 +32,11 @@ jobs:
 
       - name: Override demos list
         run: |
-          echo demos/pwads/av/fast/af253503.zip/af253503.lmp \
-               demos/pwads/hr/movie/11hr7159.zip/11hr7159.lmp \
-               demos/pwads/mm/movie/30mm8356.zip/30mm8356.lmp \
-               demos/pwads/mm2/max/m2221807.zip/m2221807.lmp \
-               demos/pwads/requiem/movie/6039rq01.zip/6039rq01.lmp \
+          echo pwads/av/fast/af253503.zip/af253503.lmp \
+               pwads/hr/movie/11hr7159.zip/11hr7159.lmp \
+               pwads/mm/movie/30mm8356.zip/30mm8356.lmp \
+               pwads/mm2/max/m2221807.zip/m2221807.lmp \
+               pwads/requiem/movie/6039rq01.zip/6039rq01.lmp \
              > demos.txt
 
       - name: Test
