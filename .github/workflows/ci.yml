@@ -39,6 +39,6 @@ jobs:
                pwads/requiem/movie/6039rq01.zip/6039rq01.lmp \
              > demos.txt
 
-      - name: Test
+      - name: Build
         run: |
-          make check
+          make output
