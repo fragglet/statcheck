@@ -45,9 +45,9 @@ jobs:
 
       - name: Check output
         run: |
-          diff -u ${expected,output}/pwads/av/fast/af253503.zip/af253503.lmp
-          diff -u ${expected,output}/pwads/hr/movie/11hr7159.zip/11hr7159.lmp
-          diff -u ${expected,output}/pwads/mm/movie/30mm8356.zip/30mm8356.lmp
-          diff -u ${expected,output}/pwads/mm2/max/m2221807.zip/m2221807.lmp
-          diff -u ${expected,output}/pwads/requiem/movie/6039rq01.zip/6039rq01.lmp
+          diff -u {expected,output}/pwads/av/fast/af253503.zip/af253503.txt
+          diff -u {expected,output}/pwads/hr/movie/11hr7159.zip/11hr7159.txt
+          diff -u {expected,output}/pwads/mm/movie/30mm8356.zip/30mm8356.txt
+          diff -u {expected,output}/pwads/mm2/max/m2221807.zip/m2221807.txt
+          diff -u {expected,output}/pwads/requiem/movie/6039rq01.zip/6039rq01.txt
           echo "All outputs match expected; test passed."
