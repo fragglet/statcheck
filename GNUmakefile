@@ -9,10 +9,12 @@
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 
-export SOURCE_PORT = $(shell which chocolate-doom)
 export SDL_VIDEODRIVER = dummy
-export DOOMOPTS = -mb 16 -nodraw -noblit -nosound \
-                  -noautoload -nogui -nograbmouse
+
+SOURCE_PORT_NAME = chocolate-doom
+SOURCE_PORT := $(shell which $(SOURCE_PORT_NAME) || echo missing_source_port)
+DOOMOPTS = -mb 16 -nodraw -noblit -nosound \
+           -noautoload -nogui -nograbmouse
 
 ALL_DEMOS = $(patsubst %,demos/%,$(shell cat demos.txt))
 OUTPUTS = $(subst .lmp,.txt,$(subst demos/,output/,$(ALL_DEMOS)))
@@ -24,9 +26,13 @@ check: expected output
 
 output: $(OUTPUTS)
 
-output/%.txt: demos/%.lmp $(SOURCE_PORT)
-	@mkdir -p $(dir $@)
-	@./testrunner $< $@
+missing_source_port:
+	@echo "Failed to find" $(SOURCE_PORT_NAME) "in PATH."
+	@echo "To specify the path explicitly:"
+	@echo "  make SOURCE_PORT=/path/to/$(SOURCE_PORT_NAME)"
+	@echo "Or to search for a different source port:"
+	@echo "  make SOURCE_PORT_NAME=lemon-doom"
+	@false
 
 .rules: makerules
 	./makerules $@
